@@ -13,13 +13,12 @@ export default async (data: IMailLogsBody) => {
     } = data
     const members = recipients.split(',').map((email) => {
       return {
-        email_address: email,
+        email_address: email.toString().trim(),
         status: 'pending'
       }
     })
     const mailData = {
       members: members,
-      update_existing:true
     }
     const options = {
       method: 'POST',
@@ -30,9 +29,9 @@ export default async (data: IMailLogsBody) => {
       data: mailData
     }
     const response = await http(options)
-    if (response.data.errors && Array.isArray(response.data.errors) && response.data.errors.length >= 1) {
-      throw response.data.errors
-    }
+    // if (response.data.errors && Array.isArray(response.data.errors) && response.data.errors.length >= 1) {
+    //   throw response.data.errors[0]
+    // }
     return true
   } catch (error) {
     throw error

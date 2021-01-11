@@ -27,11 +27,13 @@ export class MailLogs {
       //   _id: newMailLogEntity._id,
       //   senderEmail: newMailLogEntity.senderEmail,
       //   senderName: newMailLogEntity.senderName,
-      //   email: newMailLogEntity.email,
+      //   recipients: newMailLogEntity.recipients,
       //   createdAt: newMailLogEntity.createdAt,
       //   updatedAt: newMailLogEntity.updatedAt,
       // })
-      // return this.deps.send(data)
+      // send email
+      this.deps.send(newMailLogEntity)
+      // add some logs
       return newMailLogEntity
     } catch (error) {
       throw error

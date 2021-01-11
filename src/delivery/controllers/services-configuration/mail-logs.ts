@@ -1,5 +1,6 @@
 import {
-  MailLogs
+  MailLogs,
+  MailLogsList
 } from '../../../domain/services/mail-logs'
 
 import MailChimp from '../../helpers/mailer/mailchimps'
@@ -10,5 +11,11 @@ export const mailLogs = () => (
   new MailLogs({
     repositoryGateway: new MailLogsRepository(),
     send: MailChimp
+  })
+)
+
+export const mailLogsList = () => (
+  new MailLogsList({
+    repositoryGateway: new MailLogsRepository(),
   })
 )

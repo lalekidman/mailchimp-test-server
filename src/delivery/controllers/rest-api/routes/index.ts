@@ -5,7 +5,8 @@ import * as HttpStatus from 'http-status-codes'
 const ROOT_DIR = `/../../../../..`
 // import MailLogsModel, {IMailChimpsCollectionModel} from '../../../../app-plugins/persistence/repositories/models/mailer'
 import {
-  mailLogs
+  mailLogs,
+  mailLogsList
 } from '../../services-configuration/mail-logs'
 export default class _Router {
   /**
@@ -16,7 +17,22 @@ export default class _Router {
     this.router = Router({mergeParams: true})
   }
   private viewRoute = (req: Request, res: Response, next: NextFunction) => {
-    res.render(__dirname.concat(`${ROOT_DIR}/success`))
+    mailLogsList()
+    .getList()
+    .then((data) => {
+      res.status(HttpStatus.OK).send({
+        success: true,
+        result: data,
+        error: []
+      })
+    })
+    .catch((err) => {
+      res.status(HttpStatus.BAD_REQUEST).send({
+        success: false,
+        result: null,
+        error: [err.message]
+      })
+    })
   }
   private sendEmail = async (req: Request, res: Response, next: NextFunction) => {
     res.end()
