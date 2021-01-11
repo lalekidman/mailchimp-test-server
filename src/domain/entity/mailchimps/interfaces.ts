@@ -1,8 +1,8 @@
 import {IGeneralEntityProperties} from '../../interfaces'
-export interface IMailChimpsBody {
-  email: string
-  firstName: string
-  lastname: string
+export interface IMailLogsBody {
+  recipients: string
+  senderName: string
+  senderEmail: string
 }
-export interface IMailChimpsEntity extends IGeneralEntityProperties, IMailChimpsBody {
+export interface IMailLogsEntity extends IGeneralEntityProperties, IMailLogsBody {
 }

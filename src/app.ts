@@ -49,7 +49,7 @@ class App {
     this.app.set('view engine', 'hbs')
     this.app.use(bodyParser.json())
     this.app.use(bodyParser.urlencoded({ extended: false }))
-    this.app.use(express.static(path.join(__dirname, 'public')))
+    // this.app.use(express.static(path.join(__dirname, 'public')))
     this.app.use((req: Request, res: Response, next: NextFunction) => {
       res.header('Access-Control-Allow-Origin', '*')
       // res.header('Access-Control-Allow-Origin', 'http://localhost:3000')
