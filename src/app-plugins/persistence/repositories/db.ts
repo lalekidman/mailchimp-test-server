@@ -1,4 +1,4 @@
-import * as mongoose from 'mongoose'
+import mongoose from 'mongoose'
 interface IDatabaseOptions {
   name: string // name of the database
   host: string // host of the database'
@@ -90,7 +90,7 @@ export default class Database {
   /**
    * connect the db.
    */
-  public connect () {
+  public async connect () {
     if (process.env.NODE_ENV === 'test') {
       // not implemented yet.
       this.name = this.name.concat('_test')
@@ -99,6 +99,7 @@ export default class Database {
     if (this.authDBName) {
       this._databaseURI = `${this._databaseURI}?authSource=${this.authDBName}`
     }
+    console.log('this._databaseURI :>> ', this._databaseURI);
     return mongoose.connect(this.databaseURI, {useNewUrlParser: true}).then((res) => {
       console.log('Successfully connected to database.')
       return res
